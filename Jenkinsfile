@@ -21,11 +21,21 @@ pipeline {
 		steps {
 			sh 'mvn test'
 		}
+		    post {
+			always {
+			    junit 'target/surefire-reports/*.xml'
+			}
+		    }
 	}
-    }
-    post {
-        always {
-            junit 'target/surefire-reports/*.xml'
-        }
+	    stage ('CheckStyle') {
+		    steps {
+			    sh 'mvn checkstyle:checkstyle'
+		    }
+		    post {
+			    always {
+				    recordIssues enabledForFailure: true, tool: checkStyle()
+			    }
+		    }
+	    }
     }
 }
