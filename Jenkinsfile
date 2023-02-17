@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    environment {
+	SONAR_HOST_URL='=http://localhost:9000'
+	SONAR_LOGIN='sqp_4657f17bac0629bf48e7f49f36d43ef7e97aad9b'
+    }
     stages {
 	stage ('SCM') {
 		steps {
@@ -41,8 +45,8 @@ pipeline {
 		steps {
 	    		sh 'mvn clean verify sonar:sonar \
 				  -Dsonar.projectKey=mon-appli \
-				  -Dsonar.host.url=http://localhost:9000 \
-				  -Dsonar.login=sqp_4657f17bac0629bf48e7f49f36d43ef7e97aad9b'
+				  -Dsonar.host.url=${SONAR_HOST_URL} \
+				  -Dsonar.login=${SONAR_LOGIN}'
 		}
 	}
     }
