@@ -43,7 +43,7 @@ pipeline {
 	}
 	stage ('Code analyze') {
 		when {
-				branch 'sonar'
+				branch 'sonar/*'
 		}
 		steps {
 	    		sh 'mvn clean verify sonar:sonar \
