@@ -42,6 +42,9 @@ pipeline {
 		}
 	}
 	stage ('Code analyze') {
+		when {
+			anyOf { branch 'master'; branch 'sonar' }
+		}
 		steps {
 	    		sh 'mvn clean verify sonar:sonar \
 				  -Dsonar.projectKey=mon-appli \
