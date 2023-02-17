@@ -43,7 +43,10 @@ pipeline {
 	}
 	stage ('Code analyze') {
 		when {
-			anyOf { branch 'master'; branch 'sonar' }
+			anyOf {
+				branch 'master';
+				branch 'sonar'
+			}
 		}
 		steps {
 	    		sh 'mvn clean verify sonar:sonar \
