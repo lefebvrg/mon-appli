@@ -48,8 +48,8 @@ pipeline {
 		steps {
 	    		sh 'mvn clean verify sonar:sonar \
 				  -Dsonar.projectKey=mon-appli \
-				  -Dsonar.host.url=${SONAR_HOST_URL} \
-				  -Dsonar.login=${SONAR_LOGIN}'
+				  -Dsonar.host.url=$SONAR_HOST_URL \
+				  -Dsonar.login=$SONAR_LOGIN'
 		}
 	}
     }
